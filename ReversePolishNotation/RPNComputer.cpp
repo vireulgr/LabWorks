@@ -3,7 +3,6 @@
 
 RPNComputer::RPNComputer() {}
 
-
 RPNComputer::~RPNComputer() {}
 
 double RPNComputer::compute(std::vector<Lexem> const & a) {

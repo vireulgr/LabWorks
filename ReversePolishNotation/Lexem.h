@@ -16,7 +16,9 @@ class Lexem {
     char m_val[20];
 public:
     Lexem();
-    Lexem(char const * a, int len);
     ~Lexem();
+
+    bool isValid();
 };
 
+Lexem CreateLexem(char const * a, int aSize);
