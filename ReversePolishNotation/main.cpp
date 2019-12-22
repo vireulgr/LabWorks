@@ -10,7 +10,6 @@
 void TEST_RPNCalculator( ) {
     {
         std::string inputStr = "3 4 8 1 3 + - / *"; // 3 * (4 / (8 - (1 + 3))) = 3
-
         Parser parser;
         std::vector<Lexem> lexems = parser.parse(inputStr);
 
@@ -29,7 +28,6 @@ void TEST_RPNCalculator( ) {
     }
     {
         std::string inputStr = "85 3 4 + - 2 / 3 *"; // ((85 - (3 + 4)) / 2) * 3 = 117
-
         Parser parser;
         std::vector<Lexem> lexems = parser.parse(inputStr);
 

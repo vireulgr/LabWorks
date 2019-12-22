@@ -31,5 +31,8 @@
 *.out
 *.app
 
+# Build directory
+build/
+
 # Vim swap files
 *.sw[a-z]

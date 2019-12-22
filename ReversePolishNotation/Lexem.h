@@ -19,6 +19,8 @@ public:
     ~Lexem();
 
     bool isValid();
+
+    friend Lexem CreateLexem(std::string const & in);
 };
 
-Lexem CreateLexem(char const * a, int aSize);
+Lexem CreateLexem(std::string const & a);
