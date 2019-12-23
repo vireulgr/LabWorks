@@ -34,5 +34,9 @@
 # Build directory
 build/
 
+# Visual Studio directories
+x64/
+.vs/
+
 # Vim swap files
 *.sw[a-z]

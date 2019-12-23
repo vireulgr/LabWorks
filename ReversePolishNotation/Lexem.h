@@ -18,9 +18,13 @@ public:
     Lexem();
     ~Lexem();
 
-    bool isValid();
+    bool isValid() const;
+    LexemType getType() const;
+    double getDoubleValue() const;
 
     friend Lexem CreateLexem(std::string const & in);
+    friend Lexem CreateLexem(double val);
 };
 
 Lexem CreateLexem(std::string const & a);
+Lexem CreateLexem(double val);
