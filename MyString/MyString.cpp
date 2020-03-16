@@ -123,8 +123,10 @@ MyString& MyString::operator = (const char rightChar) {
 void MyString::append(char const * rightString, size_t len) {
 
     char * tmp = new char[len + m_length + 1];
-    strcpy_s(tmp,            (m_length + 1) * sizeof(char), m_str);
-    strcpy_s(tmp + m_length, (len + 1) * sizeof(char)     , rightString);
+    if (m_str != nullptr) {
+        strcpy_s(tmp, (m_length + 1) * sizeof(char), m_str);
+    }
+    strcpy_s(tmp + m_length, (len + 1) * sizeof(char), rightString);
 
     if (m_str != nullptr) {
         delete[] m_str;
@@ -244,8 +246,39 @@ bool MyString::operator != (const MyString& rightString) const {
     return !(*this == rightString);
 }
 
-// TODO
+// TODO: TEST
 MyString& MyString::insert(MyString const & str, size_t const pos) {
+    size_t const otherLen = str.GetLength();
+
+    if (otherLen == 0 || pos > m_length || pos < 0) {
+        return *this;
+    }
+
+    if (m_str == nullptr && pos == 0) {
+        initialize(str.GetString(), str.GetLength());
+        return *this;
+    }
+
+    if (pos == m_length) {
+        append(str.GetString, str.GetLength());
+        return *this;
+    }
+
+    char * tmp = new char[otherLen + m_length + 1];
+    char tmpChar = m_str[pos];
+    m_str[pos] = '\0';
+    strcpy_s(tmp,                  (pos + 1) * sizeof(char),            m_str); // копирование первой части строки, от 0 до pos -1
+    tmp[pos] = tmpChar;
+    strcpy_s(tmp + pos,            (otherLen + 1) * sizeof(char),       str.GetString()); // копирование вставляемой строки
+    strcpy_s(tmp + pos + otherLen, (m_length - pos + 1) * sizeof(char), m_str + pos); // копирование втоой части строки от pos до m_length
+
+    if (m_str != nullptr) {
+        delete[] m_str;
+    }
+    m_str = tmp;
+
+    m_length += otherLen;
+
     return *this;
 }
 
